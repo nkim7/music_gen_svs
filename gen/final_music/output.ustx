@@ -1,0 +1,635 @@
+name: Hmm I can think of dogs!
+comment: ""
+output_dir: Vocal
+cache_dir: UCache
+ustx_version: '0.6'
+resolution: 480
+bpm: 120
+beat_per_bar: 4
+beat_unit: 4
+expressions:
+  dyn:
+    abbr: dyn
+    default_value: 0
+    flag: ""
+    is_flag: false
+    max: 120
+    min: -240
+    name: dynamics (curve)
+    type: Curve
+  pitd:
+    abbr: pitd
+    default_value: 0
+    flag: ""
+    is_flag: false
+    max: 1200
+    min: -1200
+    name: pitch deviation (curve)
+    type: Curve
+  clr:
+    abbr: clr
+    default_value: 0
+    is_flag: false
+    max: -1
+    min: 0
+    name: voice color
+    options: []
+    type: Options
+  eng:
+    abbr: eng
+    default_value: 0
+    is_flag: false
+    max: 1
+    min: 0
+    name: resampler engine
+    options:
+    - ""
+    - worldline
+    type: Options
+key: 0
+time_signatures:
+- bar_position: 0
+  beat_per_bar: 4
+  beat_unit: 4
+tempos:
+- bpm: 120
+  position: 0
+tracks:
+- singer: Hanami -Dancing Fae- English VCCV
+  phonemizer: OpenUtau.Plugin.Builtin.EnglishVCCVPhonemizer
+  renderer_settings:
+    renderer: WORLDLINE-R
+  track_name: Track1
+  track_color: Blue
+  mute: false
+  solo: false
+  volume: 0
+  pan: 0
+  track_expressions: []
+  voice_color_names:
+  - ""
+voice_parts:
+- duration: 18240
+  name: Hmm I can think of dogs!
+  comment: ""
+  track_no: 0
+  position: 0
+  notes:
+  - position: 60
+    duration: 900
+    tone: 64
+    lyric: Puppies
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 1920
+    duration: 960
+    tone: 59
+    lyric: wag
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 3840
+    duration: 540
+    tone: 60
+    lyric: their [dh A r]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 15
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 4800
+    duration: 540
+    tone: 60
+    lyric: tails
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 15
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 5760
+    duration: 540
+    tone: 65
+    lyric: so [s O]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 15
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 6720
+    duration: 540
+    tone: 60
+    lyric: bright, [b r I t]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 15
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 7680
+    duration: 960
+    tone: 60
+    lyric: Loyal
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 9600
+    duration: 960
+    tone: 62
+    lyric: friends, [f r e n d z]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 11520
+    duration: 540
+    tone: 64
+    lyric: hearts [h a r t s]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 15
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 12480
+    duration: 540
+    tone: 60
+    lyric: pure [p y 3]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 15
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 13440
+    duration: 540
+    tone: 65
+    lyric: and [& n d]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 15
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 14400
+    duration: 540
+    tone: 65
+    lyric: light, [l I t]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 15
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 15360
+    duration: 900
+    tone: 60
+    lyric: Ruff
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 16320
+    duration: 900
+    tone: 60
+    lyric: ruff,
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 17280
+    duration: 960
+    tone: 64
+    lyric: barking
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 19200
+    duration: 960
+    tone: 59
+    lyric: in [i n]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 21120
+    duration: 900
+    tone: 60
+    lyric: the [dh u]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 22080
+    duration: 900
+    tone: 60
+    lyric: park, [p a r k]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 23040
+    duration: 960
+    tone: 65
+    lyric: Playing [p l A 1 ng]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 24960
+    duration: 960
+    tone: 64
+    lyric: fetch
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 26880
+    duration: 960
+    tone: 59
+    lyric: until [u n t i l]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+  - position: 28800
+    duration: 900
+    tone: 60
+    lyric: it's [i t s]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides:
+    - index: 1
+      offset: -167
+    - index: 2
+      phoneme: s-
+  - position: 29760
+    duration: 900
+    tone: 60
+    lyric: dark. [d a r k]
+    pitch:
+      data:
+      - shape: io
+        x: -40
+        y: 0
+      - shape: io
+        x: 40
+        y: 0
+      snap_first: true
+    vibrato:
+      length: 25
+      period: 175
+      depth: 25
+      in: 10
+      out: 10
+      shift: 0
+      drift: 0
+      vol_link: 0
+    phoneme_expressions: []
+    phoneme_overrides: []
+curves: []
+wave_parts: []
