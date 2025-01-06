@@ -1,1 +1,1 @@
-﻿# bacheolr_project
+﻿# bachelor_project
