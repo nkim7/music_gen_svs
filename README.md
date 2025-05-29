@@ -1,89 +1,145 @@
-# MusicGen SVS – AI‑Powered Singing Voice Synthesis App
+# Educational Song Composition with LLMs & Synthesised Vocals
 
-**MusicGen SVS** is a mobile application that turns a short text prompt into a fully‑fledged piece of music **sung by an artificial voice**.
-It was developed as the final Bachelor project at EPFL in Fall 2024.
-
----
-
-## ✨ Key Features
-
-| Feature                    | Description                                                                                                                                                                                                                                        |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Mood & Topic Prompting** | Enter a *mood* (e.g. “melancholic”) and a *topic* (e.g. “sunset at the lake”).                                                                                                                                                                     |
-| **One‑Tap Generation**     | The app contacts the back‑end (Python / PyTorch) which:<br>1. Drafts lyrics with a transformer LLM<br>2. Generates a lead sheet with ChordGPT<br>3. Synthesises a vocal‑only track with VITS‑SVS<br>4. Renders full accompaniment with MusicGen‑6B |
-| **Instant Playback**       | Stream the generated `.wav` straight inside the app with a waveform progress bar, loop & seek.                                                                                                                                                     |
-| **Chat‑based Refinement**  | Built‑in chatbot lets you tweak lyrics, length or style without starting from scratch.                                                                                                                                                             |
-| **Survey & Logging**       | Anonymous in‑app survey for user feedback, exportable as `.csv` for further evaluation.                                                                                                                                                            |
+> **Bachelor Project — École Polytechnique Fédérale de Lausanne (EPFL) · CHILI Lab**
+> **Author:** *Nagyung Kim*   
+> Project code‑name: **LLM‑Powered Educational Songwriting**
 
 ---
 
-## 🛠 Tech Stack
+## 📖 Overview
 
-| Layer         | Technology                                                 |
-| ------------- | ---------------------------------------------------------- |
-| **Mobile**    | React Native 0.76, Expo SDK 52, React Navigation 6         |
-| **Audio**     | `expo-av`, `react-native-track-player`                     |
-| **Back‑End**  | FastAPI / Python 3.10 running on an NVIDIA T4 GPU          |
-| **ML Models** | *MusicGen* (Meta), *VITS‑SVS* (OpenVPI), *GPT‑4o* (OpenAI) |
+This project automates the creation of **children‑friendly educational songs**.
+From a two‑word prompt (*mood* + *topic*), the pipeline delivers in **< 60 seconds**:
+
+* GPT‑generated **lyrics** & **chord loop**
+* MIDI **melody + accompaniment**
+* AI‑sung **vocal track** (OpenUtau × DiffSinger)
+* **PDF lead sheet** and fully‑mixed **WAV** file
+
+The system targets teachers and pupils alike: teachers can illustrate new concepts without musical expertise, while pupils can explore composition interactively via a chatbot or survey interface.
 
 ---
 
-## 🚀 Quick Start
+## 🧩 Architecture at a Glance
+
+```
+┌─ React Native App ─────────────┐
+│  mood + topic                  │
+└─────────────┬──────────────────┘
+              ▼ REST (Flask)
+┌──────────────────────────────────────────────┐
+│ 1 · Prompt Handler (GPT‑4o)                  │
+│   ↳ tempo · 8‑chord cycle                   │
+│                                              │
+│ 2 · Choose Model                             │
+│   A) static melody · dynamic lyrics          │
+│   B) static lyrics  · dynamic music          │
+│                                              │
+│ 3 · Lyrics & Syllable Balancer               │
+│ 4 · midi_gen → melody & accompaniment        │
+│ 5 · ust_gen  → USTX (phoneme fixes)          │
+│ 6 · OpenUtau (WORLDLINE‑R) → vocal.wav       │
+│ 7 · FluidSynth + pydub → stems & final mix   │
+└──────────────────────────────────────────────┘
+              ▼
+  Chatbot   or   Survey ➜ iterative refinement
+```
+
+---
+
+## 🔬 Two Generation Modes
+
+| Mode  | What Stays Fixed | What Varies | Ideal For                 | Key Trade‑offs                                      |
+| ----- | ---------------- | ----------- | ------------------------- | --------------------------------------------------- |
+| **A** | Melody           | Lyrics      | short, high‑quality songs | Lyric length must be shoe‑horned to melody (slower) |
+| **B** | Lyrics           | Music       | longer, fast turnaround   | Music risk of repetition; pauses in sparse text     |
+
+> *Empirical benchmark*: Model B keeps generation time almost flat as lyric length grows, while Model A time rises linearly but yields more polished music for ≤ 8 lines.
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-# 1 – Clone the repository
-git clone https://github.com/<your‑fork>/music_gen_svs.git
-cd music_gen_svs
+# clone & install
+$ git clone https://github.com/<your‑fork>/educational‑song‑llm.git
+$ cd educational‑song‑llm
+$ python -m venv .venv && source .venv/bin/activate
+$ pip install -r requirements.txt
 
-# 2 – Install dependencies
-npm install      # or: pnpm install / yarn install
+# generate in one go
+$ python main.py "happy" "bears"
 
-# 3 – Configure environment
-cp .env.example .env
-# ➜ Edit EXPO_PUBLIC_BACKEND_URL to point to your FastAPI instance
-
-# 4 – Run on a device / simulator
-npm run start    # then press “i” (iOS) or “a” (Android)
+# or via REST
+$ python api_server.py &
+$ curl -X POST http://localhost:5000/generate-music -H "Content-Type: application/json" \
+       -d '{"mood":"calm","topic":"rainforests"}'
 ```
 
-> **Minimum Node Version:** 18
-> **Minimum Expo CLI:** 7
+Outputs are written to `music/gen/demo_outputs/` and `final_music/` (WAV, MIDIs, USTX, PDF).
 
 ---
 
-## 🔧 Configuration
+## 📱 Front‑End Highlights
 
-| Variable                  | Default                          | Purpose                            |
-| ------------------------- | -------------------------------- | ---------------------------------- |
-| `EXPO_PUBLIC_BACKEND_URL` | `http://127.0.0.1:8000`          | Root URL of the FastAPI back‑end   |
-| `SVS_MODEL`               | `openvpi/vits_simple`            | Singing voice synthesis checkpoint |
-| `MUSICGEN_MODEL`          | `facebook/musicgen‑melody‑large` | MusicGen checkpoint                |
+* **Input screen** → mood & topic fields
+* **Playback screen** → lyrics card, waveform seek/loop, stems toggle
+* **Chatbot** → relevance checking, sentiment, fun facts, emoji cues
+* **Survey** → 1‑tap Likert + free‑text; CSV export for classroom analytics
 
----
-
-## 📂 Project Structure
-
-```
-.
-├── src
-│   ├── components      # Re‑usable UI widgets
-│   ├── screens         # React Navigation screens
-│   ├── styles          # Global style definitions
-│   └── ...
-├── android / ios       # Native wrappers generated by Expo
-├── gen                 # Generated demo artefacts (lyrics, midi, wav)
-└── assets              # Static images & sample audio
-```
+Younger children (≈ 7 y) preferred the concise **Survey**; older kids (10 – 14 y) spent more time and reported higher enjoyment with the **Chatbot** mode.
 
 ---
 
-## 🧑‍💻 Development Scripts
+## 🛠 Requirements (tested)
 
-| Command           | What it does                       |
-| ----------------- | ---------------------------------- |
-| `npm run start`   | Start the Expo dev‑server          |
-| `npm run android` | Build & launch on Android emulator |
-| `npm run ios`     | Build & launch on iOS simulator    |
-| `npm run web`     | Run the web target (experimental)  |
+| Tool          | Version                           |
+| ------------- | --------------------------------- |
+| Python        | 3.10 64‑bit                       |
+| Node / npm    | ≥ 18 / 9                          |
+| OpenAI API    | GPT‑4o access                     |
+| FluidSynth    | 2.3 + FluidR3\_GM.sf2             |
+| MuseScore CLI | 3.x                               |
+| OpenUtau      | 0.1.529 + **Hanami VCCV‑EN** bank |
+| Windows 10/11 | GUI automation (`uiautomation`)   |
 
+---
 
+## 📊 Results Snapshot
+
+* **Generation time** (RTX T4, 16 bars) — 50 s average.
+* **User study** (n = 4) — Chatbot mode preferred by older children; survey faster for younger pupils.
+* **Audio quality** — DiffSinger shallow diffusion + phoneme offset hacks yielded noticeably clearer *it's / that's* articulation.
+
+See full evaluation in the *Report* PDF (docs/).
+Benchmarks reproduced in `/notebooks/`.
+
+---
+
+## 🔮 Roadmap
+
+* Simplify chatbot language & add TTS for pre‑readers.
+* Expand instrument palette & vocal styles.
+* Accept **voice or drawing** prompts to seed songs.
+* Replace brute‑force syllable balancer with dynamic programming to cut latency.
+
+---
+
+## 📜 License & Citation
+
+Code released under **MIT**; third‑party models retain their own licenses.
+
+Please cite if you use this work:
+
+```bibtex
+@bachelorthesis{kim2025educSongLLM,
+  title  = {Educational Song Composition using Large Language Models with Synthesised Vocal Singing},
+  author = {Kim, Nagyung and Tozadore, Daniel},
+  school = {EPFL — CHILI Lab},
+  year   = {2025}
+}
+```
+
+---
+
+Made with ☕ + ✨ in Lausanne.
