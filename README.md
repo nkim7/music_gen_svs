@@ -1,7 +1,7 @@
 # MusicGen SVS – AI‑Powered Singing Voice Synthesis App
 
 **MusicGen SVS** is a mobile application that turns a short text prompt into a fully‑fledged piece of music **sung by an artificial voice**.
-It was developed as the final Bachelor project at FH Rapperswil (HSR – OST) in spring 2025.
+It was developed as the final Bachelor project at EPFL in Fall 2024.
 
 ---
 
